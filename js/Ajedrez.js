@@ -23,8 +23,8 @@ function init()
 	document.getElementById('container').appendChild( renderer.domElement );
 
 	camera = new THREE.PerspectiveCamera( 50, aspectRatio , 0.1, 100 );
-	camera.position.set( 1, 1.5, 2 );
-  	camera.lookAt(0,0,0);
+	camera.position.set( 0, 6, 10 );
+  	//camera.lookAt(0,0,0);
 
   	cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
   	cameraControls.target.set( 0, 0, 0 );
@@ -38,7 +38,7 @@ function init()
 	blackMaterial = new THREE.MeshBasicMaterial({ color: 0x0c0c0c} );
 
 	board = new THREE.group();
-	
+
 	for (let x = 0; x < 8; x++) {
 		for (let y = 0; y < 8; y++) {
 			var cube;
