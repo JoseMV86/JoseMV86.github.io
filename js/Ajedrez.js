@@ -77,9 +77,7 @@ function loadPiece(piece, material, x, y, z) {
 
 		// onLoad callback
 		// Here the loaded data is assumed to be an object
-		function ( geometry  ) {
-			let obj = new THREE.Mesh( geometry, (material == 1) ? whiteMaterial : blackMaterial );
-			obj.position.set(x, y, z);
+		function ( obj  ) {
 			scene.add(obj);
 		}
 	)
