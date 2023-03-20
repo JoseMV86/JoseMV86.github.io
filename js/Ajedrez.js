@@ -73,7 +73,7 @@ function loadPiece(piece, material, x, y, z) {
 
 	loader.load(
 		// resource URL
-		"models/chess/" + piece + ".json",
+		"models/chess/Knight.json",
 
 		// onLoad callback
 		// Here the loaded data is assumed to be an object
