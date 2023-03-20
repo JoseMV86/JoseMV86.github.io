@@ -45,6 +45,27 @@ function init()
   cameraControls.target.set( 0, 0, 0 );
 
   window.addEventListener('resize', updateAspectRatio );
+
+  cubeGeo = new THREE.BoxGeometry(1, 0.1, 1);
+	whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xc0c0c0} );
+	blackMaterial = new THREE.MeshBasicMaterial({ color: 0x0c0c0c} );
+
+	board = new THREE.group();
+
+	for (let x = 0; x < 8; x++) {
+		for (let y = 0; y < 8; y++) {
+			var cube;
+			if( (y + x) % 2 == 0) {
+				cube = new THREE.Mesh(cubeGeo, whiteMaterial);
+			} else {
+				cube = new THREE.Mesh(cubeGeo, blackMaterial);
+			}
+			cube.position.set(x, 0, y);
+			board.add(cube);
+		}
+	}
+
+	scene.add(board);
 }
 
 function loadCubo(lado)
