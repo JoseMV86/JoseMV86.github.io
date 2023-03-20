@@ -65,6 +65,24 @@ function init()
 	}
 
 	scene.add(board);
+	loadPiece("Knight", 1, 5, -5, 5);
+}
+
+function loadPiece(piece, material, x, y, z) {
+	const loader = new THREE.ObjectLoader();
+
+	loader.load(
+		// resource URL
+		"models/chess/" + piece + ".json",
+
+		// onLoad callback
+		// Here the loaded data is assumed to be an object
+		function ( geometry  ) {
+			let obj = new THREE.Mesh( geometry, (material == 1) ? whiteMaterial : blackMaterial );
+			obj.position.set(x, y, z);
+			scene.add(obj);
+		}
+	)
 }
 
 function updateAspectRatio()
