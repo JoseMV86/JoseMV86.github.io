@@ -12,22 +12,16 @@ function init()
 {
 	var aspectRatio = window.innerWidth / window.innerHeight;
   	camera = new THREE.PerspectiveCamera( 50, aspectRatio , 0.1, 100 );
-  	camera.position.set( 1, 1.5, 2 );
-  	camera.lookAt(0,0,0);
+  	camera.position.set( 0, 10, 10 );
+  	camera.lookAt(scene.position);
 	scene = new THREE.Scene();
+	scene.add(camera);
 	window.addEventListener('resize', updateAspectRatio );
 
 	renderer = new THREE.WebGLRenderer();
   	renderer.setSize( window.innerWidth, window.innerHeight );
   	renderer.setClearColor( new THREE.Color(0xFFFFFF) );
 	document.getElementById('container').appendChild( renderer.domElement );
-
-	camera = new THREE.PerspectiveCamera( 50, aspectRatio , 0.1, 100 );
-	camera.position.set( 0, 6, 10 );
-  	//camera.lookAt(0,0,0);
-
-  	cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
-  	cameraControls.target.set( 0, 0, 0 );
 
 	ambientLight = new THREE.AmbientLight(0xffffff);
 	ambientLight.intensity = 0.1;
