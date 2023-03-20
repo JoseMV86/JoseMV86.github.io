@@ -27,6 +27,20 @@ function init()
 	ambientLight.intensity = 0.1;
 	scene.add(ambientLight);
 
+	var spotLight = new THREE.SpotLight( 0xffffff );
+	spotLight.position.set( 50, 100, 50 );
+
+	spotLight.castShadow = true;
+
+	spotLight.shadowMapWidth = 1024;
+	spotLight.shadowMapHeight = 1024;
+
+	spotLight.shadowCameraNear = 500;
+	spotLight.shadowCameraFar = 4000;
+	spotLight.shadowCameraFov = 30;
+
+	scene.add( spotLight );
+
 	cubeGeo = new THREE.BoxGeometry(1, 0.1, 1);
 	whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xc0c0c0} );
 	blackMaterial = new THREE.MeshBasicMaterial({ color: 0x0c0c0c} );
