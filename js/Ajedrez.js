@@ -31,7 +31,7 @@ function init()
 	whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xc0c0c0} );
 	blackMaterial = new THREE.MeshBasicMaterial({ color: 0x0c0c0c} );
 
-	board = new THREE.group();
+	board = new THREE.Group();
 
 	for (let x = 0; x < 8; x++) {
 		for (let y = 0; y < 8; y++) {
