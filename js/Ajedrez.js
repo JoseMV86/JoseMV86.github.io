@@ -1,5 +1,23 @@
+/**
+  test.js
+  Ejemplo Three.js_r140: Cubo RGB con iluminacion y textura
 
-import * as THREE from "lib/three.min_r140.js";
+  Cubo con color por vertice y mapa de uvs usando la clase BufferGeometry.
+  La textura es una unica imagen en forma de cubo desplegado en cruz horizontal.
+  Cada cara se textura segun mapa uv en la textura.
+  En sentido antihorario las caras son:
+    Delante:   7,0,3,4
+    Derecha:   0,1,2,3
+    Detras:    1,6,5,2
+    Izquierda: 6,7,4,5
+    Arriba:    3,2,5,4
+    Abajo:     0,7,6,1
+  Donde se han numerado de 0..7 los vertices del cubo.
+  Los atributos deben darse por vertice asi que necesitamos 8x3=24 vertices pues
+  cada vertice tiene 3 atributos de normal, color y uv al ser compartido por 3 caras. 
+
+  @author rvivo@upv.es (c) Libre para fines docentes
+*/
 
 var renderer, scene, camera, cubo;
 var cameraControls;
