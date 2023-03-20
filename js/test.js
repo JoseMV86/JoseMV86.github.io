@@ -65,7 +65,7 @@ function init()
 		}
 	}
 
-	scene.add(board);
+	//scene.add(board);
 }
 
 function loadCubo(lado)
