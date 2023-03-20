@@ -6,7 +6,6 @@ var scene, camera, renderer, cameraControls;
 var board, cubeGeo, whiteMaterial, blackMaterial, ambientLight;
 
 init();
-loadCubo(1.0);
 render();
 
 function init()
@@ -33,6 +32,25 @@ function init()
 	ambientLight = new THREE.AmbientLight(0xffffff);
 	ambientLight.intensity = 0.1;
 	scene.add(ambientLight);
+
+	cubeGeo = new THREE.BoxGeometry(1, 0.1, 1);
+	whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xc0c0c0} );
+	blackMaterial = new THREE.MeshBasicMaterial({ color: 0x0c0c0c} );
+
+	for (let x = 0; x < 8; x++) {
+		for (let y = 0; y < 8; y++) {
+			var cube;
+			if( (y + x) % 2 == 0) {
+				cube = new THREE.Mesh(cubeGeo, whiteMaterial);
+			} else {
+				cube = new THREE.Mesh(cubeGeo, blackMaterial);
+			}
+			cube.position.set(x, 0, y);
+			board.add(cube);
+		}
+	}
+
+	scene.add(board);
 	
 }
 
