@@ -18,6 +18,8 @@
 
   @author rvivo@upv.es (c) Libre para fines docentes
 */
+import * as THREE from "../lib/three.module.js";
+import {GLTFLoader} from "../lib/GLTFLoader.module.js";
 
 var renderer, scene, camera, cubo;
 var cameraControls;
@@ -26,7 +28,7 @@ var angulo = -0.01;
 init();
 render();
 
-function init()
+async function init()
 {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
@@ -64,12 +66,14 @@ function init()
 		}
 	}
 
-	scene.add(board);
-	loadPiece("Knight", 1, 5, -5, 5);
+  scene.add(board);
+	//loadPiece("Knight");
+  //knight = new THREE.Mesh(Knight, blackMaterial);
+  //scene.add(knight);
 }
 
-function loadPiece(piece, material, x, y, z) {
-	const loader = new THREE.ObjectLoader();
+function loadPiece(piece) {
+	var loader = new THREE.ObjectLoader();
 
 	loader.load(
 		// resource URL
@@ -77,8 +81,9 @@ function loadPiece(piece, material, x, y, z) {
 
 		// onLoad callback
 		// Here the loaded data is assumed to be an object
-		function ( obj  ) {
-			scene.add(obj);
+		function ( geometry  ) {
+      geometry.computeBoundingBox();
+      window.localStorage.setItem(piece, JSON.stringify(geometry.toJSON()));
 		}
 	)
 }
