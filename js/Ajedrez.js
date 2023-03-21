@@ -16,10 +16,10 @@
   Los atributos deben darse por vertice asi que necesitamos 8x3=24 vertices pues
   cada vertice tiene 3 atributos de normal, color y uv al ser compartido por 3 caras. 
 
-  @author rvivo@upv.es (c) Libre para fines docentes
+
 */
-import * as THREE from "../lib/three.module.js";
-import {GLTFLoader} from "../lib/GLTFLoader.module.js";
+import * as THREE from "./three.module.js";
+import * as GLTF from "./GLTFLoader.module.js";
 
 var renderer, scene, camera, cubo;
 var cameraControls;
@@ -41,6 +41,7 @@ async function init()
   camera = new THREE.PerspectiveCamera( 50, aspectRatio , 0.1, 100 );
   camera.position.set( 1, 15, 2 );
   camera.lookAt(0,0,0);
+  document.body.appendChild(renderer.domElement);
 
   cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
   cameraControls.target.set( 0, 0, 0 );
@@ -67,25 +68,15 @@ async function init()
 	}
 
   scene.add(board);
-	//loadPiece("Knight");
-  //knight = new THREE.Mesh(Knight, blackMaterial);
-  //scene.add(knight);
+	loadPiece("Knight");
 }
 
 function loadPiece(piece) {
-	var loader = new THREE.ObjectLoader();
+  let glloader = new GLTF.GLTFLoader()
 
-	loader.load(
-		// resource URL
-		"models/chess/Knight.json",
-
-		// onLoad callback
-		// Here the loaded data is assumed to be an object
-		function ( geometry  ) {
-      geometry.computeBoundingBox();
-      window.localStorage.setItem(piece, JSON.stringify(geometry.toJSON()));
-		}
-	)
+  glloader.load( 'models/chess/Knight/scene.gltf', function ( gltf ) {
+      scene.add( gltf.scene );
+  }, undefined, function ( error ) {console.error( error );} );
 }
 
 function updateAspectRatio()
